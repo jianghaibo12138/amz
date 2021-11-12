@@ -1,4 +1,6 @@
-package com.amazing2j.amz.common;
+package com.amazing2j.amz.utils;
+
+import com.amazing2j.amz.constant.enums.ResultEnum;
 
 public class JsonResponse {
     private static final String DEFAULT_SUCCESS_MESSAGE = "SUCCESS";
@@ -23,5 +25,20 @@ public class JsonResponse {
         return new JsonResult()
                 .setCode(ResultEnum.FAIL)
                 .setMessage(message);
+    }
+
+    public static JsonResult getFailResult(int code, String message) {
+        return new JsonResult()
+                .setCode(code)
+                .setMessage(message);
+    }
+
+    // 错误
+    public static JsonResult getErrorResult(String message) {
+        return new JsonResult().setCode(ResultEnum.ERROR).setMessage(message);
+    }
+
+    public static JsonResult getErrorResult(int code, String message) {
+        return new JsonResult().setCode(code).setMessage(message);
     }
 }

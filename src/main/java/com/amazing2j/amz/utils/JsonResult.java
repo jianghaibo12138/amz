@@ -1,4 +1,6 @@
-package com.amazing2j.amz.common;
+package com.amazing2j.amz.utils;
+
+import com.amazing2j.amz.constant.enums.ResultEnum;
 
 public class JsonResult {
 
@@ -8,17 +10,17 @@ public class JsonResult {
 
     private Object data;
 
-    public JsonResult setCode(ResultEnum resultCode){
+    public JsonResult setCode(ResultEnum resultCode) {
         this.code = resultCode.code;
         return this;
     }
 
-    public JsonResult setMessage(String message){
+    public JsonResult setMessage(String message) {
         this.message = message;
         return this;
     }
 
-    public JsonResult setData(Object data){
+    public JsonResult setData(Object data) {
         this.data = data;
         return this;
     }
@@ -27,8 +29,9 @@ public class JsonResult {
         return code;
     }
 
-    public void setCode(int code) {
+    public JsonResult setCode(int code) {
         this.code = code;
+        return this;
     }
 
     public String getMessage() {

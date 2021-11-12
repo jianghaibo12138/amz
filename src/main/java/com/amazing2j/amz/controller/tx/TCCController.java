@@ -1,9 +1,9 @@
-package com.amazing2j.amz.controller.welcome;
+package com.amazing2j.amz.controller.tx;
 
-import com.amazing2j.amz.common.JsonResult;
-import com.amazing2j.amz.entity.TCCEntity;
-import com.amazing2j.amz.common.JsonResponse;
-import com.amazing2j.amz.service.TCCService.TCCService;
+import com.amazing2j.amz.model.dto.TCCRegisterPayload;
+import com.amazing2j.amz.utils.JsonResult;
+import com.amazing2j.amz.utils.JsonResponse;
+import com.amazing2j.amz.service.impl.TCCService.TCCService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,9 +16,9 @@ public class TCCController {
         this.tccService = tccService;
     }
 
-    @PostMapping(value = "/create_TCC")
-    public JsonResult createTCC(@RequestBody TCCEntity entity) {
-        return JsonResponse.getSuccessResult(tccService.createTCC(entity));
+    @PostMapping(value = "/register_TCC")
+    public JsonResult createTCC(@RequestBody TCCRegisterPayload payload) {
+        return JsonResponse.getSuccessResult(tccService.createTCC(payload));
     }
 
     @GetMapping(value = "/find_TCC_by_id/{id}")

@@ -1,46 +1,38 @@
--- MySQL dump 10.13  Distrib 5.7.33, for Linux (x86_64)
---
--- Host: localhost    Database: amz
--- ------------------------------------------------------
--- Server version	5.7.33-0ubuntu0.16.04.1
+/*
+ Navicat Premium Data Transfer
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+ Source Server         : local@14006
+ Source Server Type    : MySQL
+ Source Server Version : 100331
+ Source Host           : 127.0.0.1:14006
+ Source Schema         : amz
 
---
--- Table structure for table `TCC`
---
+ Target Server Type    : MySQL
+ Target Server Version : 100331
+ File Encoding         : 65001
 
+ Date: 12/11/2021 13:49:41
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for TCC
+-- ----------------------------
 DROP TABLE IF EXISTS `TCC`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `TCC` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `try_url` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `confirm_url` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cancel_url` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `create_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `tx_id` bigint(20) NOT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `branch_type` tinyint(4) DEFAULT NULL,
+  `body_data` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL,
+  `finish_at` timestamp(6) NULL DEFAULT NULL,
+  `rollback_at` timestamp(6) NULL DEFAULT NULL,
+  `create_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6),
+  `update_at` timestamp(6) NULL DEFAULT NULL ON UPDATE current_timestamp(6),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2021-11-12  0:42:05
+SET FOREIGN_KEY_CHECKS = 1;

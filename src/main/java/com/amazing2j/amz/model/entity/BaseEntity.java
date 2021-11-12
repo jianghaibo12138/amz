@@ -1,4 +1,4 @@
-package com.amazing2j.amz.entity;
+package com.amazing2j.amz.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,6 +10,9 @@ import java.util.Date;
 public class BaseEntity extends Serializers.Base {
     @JsonProperty("id")
     private long id;
+
+    @JsonProperty("tx_id")
+    private long txId;
 
     @JsonProperty("create_at")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -27,6 +30,14 @@ public class BaseEntity extends Serializers.Base {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getTxId() {
+        return txId;
+    }
+
+    public void setTxId(long txId) {
+        this.txId = txId;
     }
 
     public Date getCreateAt() {

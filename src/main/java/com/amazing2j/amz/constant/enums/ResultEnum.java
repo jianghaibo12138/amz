@@ -1,8 +1,10 @@
-package com.amazing2j.amz.common;
+package com.amazing2j.amz.constant.enums;
 
 public enum ResultEnum {
     SUCCESS(200, "success"),
-    FAIL(5000, "failed");
+    FAIL(5000, "failed"),
+    ERROR(6000, "ERROR"),
+    ;
 
 
     public int code;
