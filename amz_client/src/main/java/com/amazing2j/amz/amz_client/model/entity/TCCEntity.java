@@ -1,37 +1,34 @@
 package com.amazing2j.amz.amz_client.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.alibaba.fastjson.annotation.JSONField;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 public class TCCEntity extends BaseEntity {
-    @JsonProperty("url")
+    @JSONField(name = "url")
     private String url;
 
-    @JsonProperty("branch_type")
+    @JSONField(name = "branch_type")
     private int branchType;
 
-    @JsonProperty("body_data")
+    @JSONField(name = "body_data")
     private String bodyData;
 
-    @JsonProperty("status")
+    @JSONField(name = "status")
     private int status;
 
-    @JsonProperty("tx_owner")
+    @JSONField(name = "tx_owner")
     private String txOwner;
 
-    @JsonProperty("next_opt")
+    @JSONField(name = "next_opt")
     private String nextOpt;
 
-    @JsonProperty("finish_at")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(name = "finish_at", format = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date finishAt;
 
-    @JsonProperty("rollback_at")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(name = "rollback_at", format = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date rollbackAt;
 

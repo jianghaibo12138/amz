@@ -1,26 +1,22 @@
 package com.amazing2j.amz.amz_client.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ser.Serializers;
+import com.alibaba.fastjson.annotation.JSONField;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class BaseEntity extends Serializers.Base {
-    @JsonProperty("id")
+public class BaseEntity {
+    @JSONField(name = "id")
     private long id;
 
-    @JsonProperty("tx_id")
+    @JSONField(name = "tx_id")
     private long txId;
 
-    @JsonProperty("create_at")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(name = "create_at", format = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createAt;
 
-    @JsonProperty("update_at")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(name = "update_at", format = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateAt;
 

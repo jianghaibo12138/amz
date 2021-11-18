@@ -1,12 +1,15 @@
-package com.amazing2j.amz.amz_client.service.impl;
+package com.amazing2j.amz.amz_client.service.tcc;
 
+import com.alibaba.fastjson.JSON;
+import com.amazing2j.amz.amz_client.service.activemq.ProducerService;
 import com.amazing2j.amz.amz_server.constant.enums.ResultEnum;
 import com.amazing2j.amz.amz_server.constant.enums.TCCBranchTypeEnum;
 import com.amazing2j.amz.amz_server.constant.enums.TCCStatusEnum;
 import com.amazing2j.amz.amz_server.exception.SQLException;
 import com.amazing2j.amz.amz_client.model.entity.TCCEntity;
 import com.amazing2j.amz.amz_client.mapper.TCCMapper;
-import com.amazing2j.amz.amz_server.model.dto.TCCRegisterPayload;
+import com.amazing2j.amz.amz_client.model.dto.TCCRegisterPayload;
+import com.amazing2j.amz.amz_server.model.dto.activemq.TCCTaskDto;
 import com.amazing2j.amz.amz_server.utils.TXIdGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,10 +21,14 @@ import java.util.List;
 @Service
 public class TCCService {
     final TCCMapper tccMapper;
+
+    final ProducerService producerService;
+
     private final TXIdGenerator idGenerator = new TXIdGenerator();
 
-    public TCCService(TCCMapper tccMapper) {
+    public TCCService(TCCMapper tccMapper, ProducerService producerService) {
         this.tccMapper = tccMapper;
+        this.producerService = producerService;
     }
 
     public List<TCCEntity> findAllTCC() {
@@ -59,6 +66,9 @@ public class TCCService {
             throw new SQLException(ResultEnum.ERROR.code, "TCC: Insert cancel branch error");
         }
 
+        TCCTaskDto tccTaskDto = new TCCTaskDto(idGenerator.snowflakeId(), txId);
+        String taskJsonStr = JSON.toJSONString(tccTaskDto);
+        producerService.sendTxTask2ActiveMQ(taskJsonStr);
 
         return txId;
     }

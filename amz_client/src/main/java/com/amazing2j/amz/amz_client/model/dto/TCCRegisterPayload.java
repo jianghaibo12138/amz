@@ -1,24 +1,24 @@
 package com.amazing2j.amz.amz_client.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.alibaba.fastjson.annotation.JSONField;
 
 public class TCCRegisterPayload {
-    @JsonProperty("try_url")
+    @JSONField(name = "try_url")
     private String tryUrl;
 
-    @JsonProperty("try_body")
+    @JSONField(name = "try_body")
     private String tryBody;
 
-    @JsonProperty("confirm_url")
+    @JSONField(name = "confirm_url")
     private String confirmUrl;
 
-    @JsonProperty("confirm_body")
+    @JSONField(name = "confirm_body")
     private String confirmBody;
 
-    @JsonProperty("cancel_url")
+    @JSONField(name = "cancel_url")
     private String cancelUrl;
 
-    @JsonProperty("cancel_body")
+    @JSONField(name = "cancel_body")
     private String cancelBody;
 
     public String getTryUrl() {

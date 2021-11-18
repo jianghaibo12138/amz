@@ -25,3 +25,4 @@ hs_err_pid*
 .idea
 amz_client/target
 amz_server/target
+amz_server/src/main/resources/application-dev.properties
