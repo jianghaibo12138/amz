@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.amazing2j.amz.amz_server.mapper.TCCMapper">
+
+    <select id="selectAllTCC" resultType="com.amazing2j.amz.amz_server.model.entity.TCCEntity">
+        SELECT *
+        FROM TCC;
+    </select>
+
+    <select id="selectTCCByTxId" parameterType="long" resultType="com.amazing2j.amz.amz_server.model.entity.TCCEntity">
+        SELECT *
+        FROM TCC
+        WHERE tx_id = #{txId}
+        ORDER BY branch_type ASC;
+    </select>
+
+    <select id="selectNotFinishedTCCByBranchType" resultType="com.amazing2j.amz.amz_server.model.entity.TCCEntity">
+        SELECT *
+        FROM TCC
+        WHERE tx_id = #{txId}
+          AND branch_type = #{branchType}
+          AND status IN (0, 1, 2);
+    </select>
+
+    <select id="selectTCCById" parameterType="long" resultType="com.amazing2j.amz.amz_server.model.entity.TCCEntity">
+        SELECT *
+        FROM TCC
+        WHERE id = #{id};
+    </select>
+
+    <insert id="insertTCC" parameterType="com.amazing2j.amz.amz_server.model.entity.TCCEntity" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into TCC (tx_id, url, branch_type, body_data, status)
+        values (#{txId}, #{url}, #{branchType}, #{bodyData}, #{status});
+    </insert>
+
+
+    <update id="updateTCCStatus" flushCache="true" statementType="PREPARED" timeout="20">
+        update TCC
+        set status = #{status}
+        WHERE id = #{tccId};
+    </update>
+</mapper>

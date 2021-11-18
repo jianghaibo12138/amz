@@ -23,3 +23,5 @@
 hs_err_pid*
 
 .idea
+amz_client/target
+amz_server/target
