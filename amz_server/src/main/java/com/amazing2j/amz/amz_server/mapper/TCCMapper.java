@@ -15,5 +15,11 @@ public interface TCCMapper {
 
     void updateTxBranchStatus(long branchId, Integer branchStatus);
 
-    void updateTxExecutor(long branchId, Long executor);
+    void setTxExecutor(long txId, Long executor);
+
+    void unsetTxExecutor(long txId);
+
+    void incrTxTriedTimes(long txId);
+
+    void unsetTxTriedTimes(long txId);
 }

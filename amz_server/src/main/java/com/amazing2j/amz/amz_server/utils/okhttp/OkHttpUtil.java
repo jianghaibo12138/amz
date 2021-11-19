@@ -38,11 +38,13 @@ public class OkHttpUtil {
         return body;
     }
 
-    private String sendPostRequest(String reqUrl, Map<String, String> headers, Object data, String dataFormat) throws IOException {
+    private String sendPostRequest(String reqUrl, Map<String, Object> headers, Object data, String dataFormat) throws IOException {
         String bodyStr = JSON.toJSONString(data);
         Request.Builder requestBuilder = new Request.Builder().url(reqUrl);
-        for (String key : headers.keySet()) {
-            requestBuilder.addHeader(key, headers.get(key));
+        if (headers != null) {
+            for (String key : headers.keySet()) {
+                requestBuilder.addHeader(key, headers.get(key).toString());
+            }
         }
         if (dataFormat == null) {
             dataFormat = "application/json";
@@ -52,11 +54,13 @@ public class OkHttpUtil {
         return request(reqUrl, builder);
     }
 
-    private String sendPutRequest(String reqUrl, Map<String, String> headers, Object data, String dataFormat) throws IOException {
+    private String sendPutRequest(String reqUrl, Map<String, Object> headers, Object data, String dataFormat) throws IOException {
         String bodyStr = JSON.toJSONString(data);
         Request.Builder requestBuilder = new Request.Builder().url(reqUrl);
-        for (String key : headers.keySet()) {
-            requestBuilder.addHeader(key, headers.get(key));
+        if (headers != null) {
+            for (String key : headers.keySet()) {
+                requestBuilder.addHeader(key, headers.get(key).toString());
+            }
         }
         if (dataFormat == null) {
             dataFormat = "application/json";
@@ -91,42 +95,70 @@ public class OkHttpUtil {
         return String.format("%s/%s", reqUrl, String.join("/", ps));
     }
 
-    public String sendGetRequest(String reqUrl, Map<String, String> headers, Map<String, Object> params) throws IOException {
+    public String sendGetRequest(String reqUrl, Map<String, Object> headers, Map<String, Object> params) throws IOException {
         reqUrl = pckUrlParam(reqUrl, params);
         Request.Builder requestBuilder = new Request.Builder().url(reqUrl);
-        for (String key : headers.keySet()) {
-            requestBuilder.addHeader(key, headers.get(key));
+        if (headers != null) {
+            for (String key : headers.keySet()) {
+                requestBuilder.addHeader(key, headers.get(key).toString());
+            }
         }
         Request.Builder builder = requestBuilder.get();
         return request(reqUrl, builder);
     }
 
-    public String sendGetRequestRest(String reqUrl, Map<String, String> headers, String[] params) throws IOException {
+    public String sendGetRequestRest(String reqUrl, Map<String, Object> headers, String[] params) throws IOException {
         reqUrl = pckUrlRestParam(reqUrl, params);
         Request.Builder requestBuilder = new Request.Builder().url(reqUrl);
-        for (String key : headers.keySet()) {
-            requestBuilder.addHeader(key, headers.get(key));
+        if (headers != null) {
+            for (String key : headers.keySet()) {
+                requestBuilder.addHeader(key, headers.get(key).toString());
+            }
         }
         Request.Builder builder = requestBuilder.get();
         return request(reqUrl, builder);
     }
 
-    public String sendPostRequestRestByJson(String reqUrl, Map<String, String> headers, Object[] params, Object data) throws IOException {
+    public String sendDeleteRequest(String reqUrl, Map<String, Object> headers, Map<String, Object> params) throws IOException {
+        reqUrl = pckUrlParam(reqUrl, params);
+        Request.Builder requestBuilder = new Request.Builder().url(reqUrl);
+        if (headers != null) {
+            for (String key : headers.keySet()) {
+                requestBuilder.addHeader(key, headers.get(key).toString());
+            }
+        }
+        Request.Builder builder = requestBuilder.delete();
+        return request(reqUrl, builder);
+    }
+
+    public String sendDeleteRequestRest(String reqUrl, Map<String, Object> headers, String[] params) throws IOException {
+        reqUrl = pckUrlRestParam(reqUrl, params);
+        Request.Builder requestBuilder = new Request.Builder().url(reqUrl);
+        if (headers != null) {
+            for (String key : headers.keySet()) {
+                requestBuilder.addHeader(key, headers.get(key).toString());
+            }
+        }
+        Request.Builder builder = requestBuilder.delete();
+        return request(reqUrl, builder);
+    }
+
+    public String sendPostRequestRestByJson(String reqUrl, Map<String, Object> headers, Object[] params, Object data) throws IOException {
         reqUrl = pckUrlRestParam(reqUrl, params);
         return sendPostRequest(reqUrl, headers, data, "application/json");
     }
 
-    public String sendPostRequestByJson(String reqUrl, Map<String, String> headers, Map<String, Object> params, Object data) throws IOException {
+    public String sendPostRequestByJson(String reqUrl, Map<String, Object> headers, Map<String, Object> params, Object data) throws IOException {
         reqUrl = pckUrlParam(reqUrl, params);
         return sendPostRequest(reqUrl, headers, data, "application/json");
     }
 
-    public String sendPutRequestRestByJson(String reqUrl, Map<String, String> headers, Object[] params, Object data) throws IOException {
+    public String sendPutRequestRestByJson(String reqUrl, Map<String, Object> headers, Object[] params, Object data) throws IOException {
         reqUrl = pckUrlRestParam(reqUrl, params);
         return sendPutRequest(reqUrl, headers, data, "application/json");
     }
 
-    public String sendPutRequestByJson(String reqUrl, Map<String, String> headers, Map<String, Object> params, Object data) throws IOException {
+    public String sendPutRequestByJson(String reqUrl, Map<String, Object> headers, Map<String, Object> params, Object data) throws IOException {
         reqUrl = pckUrlParam(reqUrl, params);
         return sendPutRequest(reqUrl, headers, data, "application/json");
     }

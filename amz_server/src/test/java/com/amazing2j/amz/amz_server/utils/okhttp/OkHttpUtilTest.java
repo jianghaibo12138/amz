@@ -13,7 +13,7 @@ class OkHttpUtilTest {
     @Test
     void sendGetRequest() {
         String reqUrl = "http://192.168.7.107:8383/api/user/current_user_info";
-        HashMap<String, String> headers = new HashMap<String, String>();
+        HashMap<String, Object> headers = new HashMap<String, Object>();
         headers.put("Authorization", token);
         try {
             String respStr = new OkHttpUtil().sendGetRequest(reqUrl, headers, null);
@@ -27,7 +27,7 @@ class OkHttpUtilTest {
     @Test
     void sendGetRequestRest() {
         String reqUrl = "http://192.168.7.107:8383/api/user/current_user_info";
-        HashMap<String, String> headers = new HashMap<String, String>();
+        HashMap<String, Object> headers = new HashMap<String, Object>();
         headers.put("Authorization", token);
         try {
             String respStr = new OkHttpUtil().sendGetRequestRest(reqUrl, headers, null);
@@ -41,7 +41,7 @@ class OkHttpUtilTest {
     @Test
     void sendPostRequestRestByJson() {
         String reqUrl = "http://192.168.7.107:8383/api/modeling/query/om_Product_Info";
-        HashMap<String, String> headers = new HashMap<String, String>();
+        HashMap<String, Object> headers = new HashMap<String, Object>();
         headers.put("Authorization", token);
 
         HashMap<String, Integer> data = new HashMap<>();
@@ -59,7 +59,7 @@ class OkHttpUtilTest {
     @Test
     void sendPostRequestByJson() {
         String reqUrl = "http://192.168.7.107:8383/api/modeling/query/om_Product_Info";
-        HashMap<String, String> headers = new HashMap<String, String>();
+        HashMap<String, Object> headers = new HashMap<String, Object>();
         headers.put("Authorization", token);
 
         HashMap<String, Integer> data = new HashMap<>();
@@ -77,7 +77,7 @@ class OkHttpUtilTest {
     @Test
     void sendPutRequestByJson() {
         String reqUrl = "http://192.168.7.107:8383/api/modeling/query/om_Product_Info";
-        HashMap<String, String> headers = new HashMap<String, String>();
+        HashMap<String, Object> headers = new HashMap<String, Object>();
         headers.put("Authorization", token);
 
         HashMap<String, Integer> data = new HashMap<>();
@@ -95,7 +95,7 @@ class OkHttpUtilTest {
     @Test
     void sendPutRequestRestByJson() {
         String reqUrl = "http://192.168.7.107:8383/api/modeling/query/om_Product_Info";
-        HashMap<String, String> headers = new HashMap<String, String>();
+        HashMap<String, Object> headers = new HashMap<String, Object>();
         headers.put("Authorization", token);
 
         HashMap<String, Integer> data = new HashMap<>();

@@ -7,8 +7,7 @@
     <select id="getLatestTCCTxId" resultType="java.lang.Long">
         SELECT DISTINCT tx_id
         FROM amz_TCC
-        ORDER BY create_at
-        limit 1;
+        ORDER BY create_at limit 1;
     </select>
 
     <select id="getTCCEntityForUpdateByTxId" resultType="com.amazing2j.amz.amz_server.model.entity.TCCEntity"
@@ -16,8 +15,9 @@
         SELECT *
         FROM amz_TCC
         WHERE tx_id = #{txId}
+          AND tried_times <![CDATA[<=]]> 3
             FOR
-        UPDATE;
+                UPDATE;
     </select>
 
     <update id="updateTxBranchStatus">
@@ -26,9 +26,27 @@
         WHERE id = #{branchId}
     </update>
 
-    <update id="updateTxExecutor">
+    <update id="setTxExecutor">
         UPDATE amz_TCC
         SET executor = #{executor}
-        WHERE id = #{branchId}
+        WHERE tx_id = #{txId}
+    </update>
+
+    <update id="unsetTxExecutor">
+        UPDATE amz_TCC
+        SET executor = null
+        WHERE tx_id = #{txId}
+    </update>
+
+    <update id="incrTxTriedTimes">
+        UPDATE amz_TCC
+        SET tried_times = tried_times + 1
+        WHERE tx_id = #{txId}
+    </update>
+
+    <update id="unsetTxTriedTimes">
+        UPDATE amz_TCC
+        SET tried_times = 0
+        WHERE tx_id = #{txId}
     </update>
 </mapper>
