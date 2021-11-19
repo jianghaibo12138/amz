@@ -6,14 +6,29 @@
 
     <select id="getLatestTCCTxId" resultType="java.lang.Long">
         SELECT DISTINCT tx_id
-        FROM TCC
+        FROM amz_TCC
         ORDER BY create_at
         limit 1;
     </select>
 
-    <select id="getTCCEntityByTxId" resultType="com.amazing2j.amz.amz_server.model.entity.TCCEntity" parameterType="long">
+    <select id="getTCCEntityForUpdateByTxId" resultType="com.amazing2j.amz.amz_server.model.entity.TCCEntity"
+            parameterType="long">
         SELECT *
-        FROM TCC
-        WHERE tx_id = #{txId};
+        FROM amz_TCC
+        WHERE tx_id = #{txId}
+            FOR
+        UPDATE;
     </select>
+
+    <update id="updateTxBranchStatus">
+        UPDATE amz_TCC
+        SET branch_status = #{branchStatus}
+        WHERE id = #{branchId}
+    </update>
+
+    <update id="updateTxExecutor">
+        UPDATE amz_TCC
+        SET executor = #{executor}
+        WHERE id = #{branchId}
+    </update>
 </mapper>

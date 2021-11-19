@@ -4,42 +4,28 @@
 
 <mapper namespace="com.amazing2j.amz.amz_client.mapper.TCCMapper">
 
-    <select id="selectAllTCC" resultType="com.amazing2j.amz.amz_client.model.entity.TCCEntity">
+    <select id="selectAllTCC" resultType="com.amazing2j.amz.amz_server.model.entity.TCCEntity">
         SELECT *
-        FROM TCC;
+        FROM amz_TCC;
     </select>
 
-    <select id="selectTCCByTxId" parameterType="long" resultType="com.amazing2j.amz.amz_client.model.entity.TCCEntity">
+    <select id="selectTCCByTxId" parameterType="long" resultType="com.amazing2j.amz.amz_server.model.entity.TCCEntity">
         SELECT *
-        FROM TCC
+        FROM amz_TCC
         WHERE tx_id = #{txId}
-        ORDER BY branch_type ASC;
+        ORDER BY branch_type;
     </select>
 
-    <select id="selectNotFinishedTCCByBranchType" resultType="com.amazing2j.amz.amz_client.model.entity.TCCEntity">
+    <select id="selectTCCById" parameterType="long" resultType="com.amazing2j.amz.amz_server.model.entity.TCCEntity">
         SELECT *
-        FROM TCC
-        WHERE tx_id = #{txId}
-          AND branch_type = #{branchType}
-          AND status IN (0, 1, 2);
-    </select>
-
-    <select id="selectTCCById" parameterType="long" resultType="com.amazing2j.amz.amz_client.model.entity.TCCEntity">
-        SELECT *
-        FROM TCC
+        FROM amz_TCC
         WHERE id = #{id};
     </select>
 
-    <insert id="insertTCC" parameterType="com.amazing2j.amz.amz_client.model.entity.TCCEntity" useGeneratedKeys="true"
+    <insert id="insertTCC" parameterType="com.amazing2j.amz.amz_server.model.entity.TCCEntity" useGeneratedKeys="true"
             keyProperty="id">
-        insert into TCC (tx_id, url, branch_type, body_data, status)
-        values (#{txId}, #{url}, #{branchType}, #{bodyData}, #{status});
+        insert into amz_TCC (tx_id, url, branch_type, body_data)
+        values (#{txId}, #{url}, #{branchType}, #{bodyData});
     </insert>
 
-
-    <update id="updateTCCStatus" flushCache="true" statementType="PREPARED" timeout="20">
-        update TCC
-        set status = #{status}
-        WHERE id = #{tccId};
-    </update>
 </mapper>

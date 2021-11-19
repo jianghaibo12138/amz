@@ -11,5 +11,9 @@ public interface TCCMapper {
 
     Long getLatestTCCTxId();
 
-    ArrayList<TCCEntity> getTCCEntityByTxId(long txId);
+    ArrayList<TCCEntity> getTCCEntityForUpdateByTxId(long txId);
+
+    void updateTxBranchStatus(long branchId, Integer branchStatus);
+
+    void updateTxExecutor(long branchId, Long executor);
 }

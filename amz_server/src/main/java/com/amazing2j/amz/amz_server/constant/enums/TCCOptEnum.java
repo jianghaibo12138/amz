@@ -1,6 +1,6 @@
 package com.amazing2j.amz.amz_server.constant.enums;
 
-import com.amazing2j.amz.amz_server.constant.consist.TCCOpt;
+import com.amazing2j.amz.amz_server.constant.consist.tcc.TCCOpt;
 
 public enum TCCOptEnum {
     OPT_TRY(TCCOpt.TRY),

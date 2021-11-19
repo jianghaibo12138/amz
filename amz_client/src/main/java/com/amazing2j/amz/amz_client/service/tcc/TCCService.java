@@ -6,7 +6,7 @@ import com.amazing2j.amz.amz_server.constant.enums.ResultEnum;
 import com.amazing2j.amz.amz_server.constant.enums.TCCBranchTypeEnum;
 import com.amazing2j.amz.amz_server.constant.enums.TCCStatusEnum;
 import com.amazing2j.amz.amz_server.exception.SQLException;
-import com.amazing2j.amz.amz_client.model.entity.TCCEntity;
+import com.amazing2j.amz.amz_server.model.entity.TCCEntity;
 import com.amazing2j.amz.amz_client.mapper.TCCMapper;
 import com.amazing2j.amz.amz_client.model.dto.TCCRegisterPayload;
 import com.amazing2j.amz.amz_server.model.dto.activemq.TCCTaskDto;
@@ -79,7 +79,6 @@ public class TCCService {
         entity.setUrl(url);
         entity.setBranchType(branchType);
         entity.setBodyData(bodyData);
-        entity.setStatus(status);
         return entity;
     }
 }

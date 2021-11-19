@@ -26,7 +26,6 @@ public class ExceptionController {
             SQLException sqlException = (SQLException) e;
             return JsonResponse.getFailResult(sqlException.getCode(), sqlException.getMessage());
         } else {
-            logger.error("[系统异常]: 错误是: ", e);
             return JsonResponse.getErrorResult(ResultEnum.ERROR.code, e.getMessage());
         }
     }
@@ -57,6 +56,7 @@ public class ExceptionController {
     @org.springframework.web.bind.annotation.ExceptionHandler(value = Exception.class)
     @ResponseBody
     public JsonResult exceptionHandler(Exception e) {
+        logger.error("[系统异常]: 错误是: ", e);
         return JsonResponse.getErrorResult(ResultEnum.ERROR.code, e.getMessage());
     }
 

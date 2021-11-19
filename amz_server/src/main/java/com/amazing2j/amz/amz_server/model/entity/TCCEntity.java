@@ -15,14 +15,14 @@ public class TCCEntity extends BaseEntity {
     @JSONField(name = "body_data")
     private String bodyData;
 
-    @JSONField(name = "status")
-    private int status;
-
-    @JSONField(name = "tx_owner")
-    private String txOwner;
+    @JSONField(name = "executor")
+    private String executor;
 
     @JSONField(name = "next_opt")
     private String nextOpt;
+
+    @JSONField(name = "branch_status")
+    private int branchStatus;
 
     @JSONField(name = "finish_at", format = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -56,16 +56,12 @@ public class TCCEntity extends BaseEntity {
         this.bodyData = bodyData;
     }
 
-    public int getStatus() {
-        return status;
+    public String getExecutor() {
+        return executor;
     }
 
-    public String getTxOwner() {
-        return txOwner;
-    }
-
-    public void setTxOwner(String txOwner) {
-        this.txOwner = txOwner;
+    public void setExecutor(String executor) {
+        this.executor = executor;
     }
 
     public String getNextOpt() {
@@ -76,8 +72,12 @@ public class TCCEntity extends BaseEntity {
         this.nextOpt = nextOpt;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public int getBranchStatus() {
+        return branchStatus;
+    }
+
+    public void setBranchStatus(int branchStatus) {
+        this.branchStatus = branchStatus;
     }
 
     public Date getFinishAt() {

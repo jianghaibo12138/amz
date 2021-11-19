@@ -7,10 +7,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
 
 @Service
 public class TCCManagerService {
     private final static Logger logger = LoggerFactory.getLogger(TCCManagerService.class);
+
+    private final ExecutorService executorService = TCCThreadPoolExecutor.tccExecutorPool(10, 50);
 
     final TCCMapper tccMapper;
 
@@ -18,8 +21,8 @@ public class TCCManagerService {
         this.tccMapper = tccMapper;
     }
 
-    public void getTCCTx(long txId) {
-        ArrayList<TCCEntity> entities = tccMapper.getTCCEntityByTxId(txId);
-        logger.debug("[TCCService getTCCTx] latest TCC tx_id: {}", entities);
+    public void startTCCTx(long txId) {
+        logger.debug("[TCCManagerService startTCCTx] committed TCC execute task, tx_id: {}", txId);
+        executorService.submit(new TCCExecuteTask(txId));
     }
 }

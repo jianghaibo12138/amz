@@ -28,7 +28,7 @@ public class TxTaskQueueConsumer {
     public void readActiveQueue(String taskJsonStr) {
         JSONObject jsonObject = JSON.parseObject(taskJsonStr);
         TCCTaskDto tccTaskDto = new TCCTaskDto(jsonObject.getLong("task_id"), jsonObject.getLong("tx_id"));
-        logger.info("[{}] recv tx task: {}", activeMQConfigure.queue(), taskJsonStr);
-        this.tccManagerService.getTCCTx(tccTaskDto.getTxId());
+        logger.info("[{}] receive tx task: {}", activeMQConfigure.queue(), taskJsonStr);
+        this.tccManagerService.startTCCTx(tccTaskDto.getTxId());
     }
 }

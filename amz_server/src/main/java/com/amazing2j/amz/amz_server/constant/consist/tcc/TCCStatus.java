@@ -1,4 +1,4 @@
-package com.amazing2j.amz.amz_server.constant.consist;
+package com.amazing2j.amz.amz_server.constant.consist.tcc;
 
 public class TCCStatus {
     public final static int INITIAL = 0;

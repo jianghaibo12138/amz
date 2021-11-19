@@ -1,6 +1,6 @@
 package com.amazing2j.amz.amz_server.constant.enums;
 
-import com.amazing2j.amz.amz_server.constant.consist.TCCStatus;
+import com.amazing2j.amz.amz_server.constant.consist.tcc.TCCStatus;
 
 public enum TCCStatusEnum {
     INITIAL(TCCStatus.INITIAL),

@@ -1,4 +1,4 @@
-package com.amazing2j.amz.amz_server.constant.consist;
+package com.amazing2j.amz.amz_server.constant.consist.tcc;
 
 public class TCCBranchType {
     public final static int TRY_BRANCH = 0;

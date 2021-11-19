@@ -1,6 +1,6 @@
 package com.amazing2j.amz.amz_server.constant.enums;
 
-import com.amazing2j.amz.amz_server.constant.consist.TCCBranchType;
+import com.amazing2j.amz.amz_server.constant.consist.tcc.TCCBranchType;
 
 public enum TCCBranchTypeEnum {
     TRY_BRANCH(TCCBranchType.TRY_BRANCH),
