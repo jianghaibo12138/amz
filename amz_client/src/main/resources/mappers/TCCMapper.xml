@@ -24,8 +24,8 @@
 
     <insert id="insertTCC" parameterType="com.amazing2j.amz.amz_server.model.entity.TCCEntity" useGeneratedKeys="true"
             keyProperty="id">
-        insert into amz_TCC (tx_id, url, branch_type, body_data)
-        values (#{txId}, #{url}, #{branchType}, #{bodyData});
+        insert into amz_TCC (tx_id, url, branch_type, body_data, header, branch_status, executor, tried_times, method, rest )
+        values (#{txId}, #{url}, #{branchType}, #{bodyData}, #{header}, #{branchStatus}, #{executor}, #{triedTimes}, #{method}, #{rest});
     </insert>
 
 </mapper>

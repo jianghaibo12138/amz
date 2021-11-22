@@ -1,16 +1,11 @@
-package com.amazing2j.amz.amz_server.constant.enums;
+package com.amazing2j.amz.amz_server.exception;
 
-public enum ResultEnum {
-    SUCCESS(200, "success"),
-    FAIL(5000, "failed"),
-    ERROR(6000, "ERROR"),
-    ;
+public class TXException extends RuntimeException {
+    private int code;
 
+    private String message;
 
-    public int code;
-    public String message;
-
-    ResultEnum(int code, String message) {
+    public TXException(int code, String message) {
         this.code = code;
         this.message = message;
     }
@@ -23,6 +18,7 @@ public enum ResultEnum {
         this.code = code;
     }
 
+    @Override
     public String getMessage() {
         return message;
     }

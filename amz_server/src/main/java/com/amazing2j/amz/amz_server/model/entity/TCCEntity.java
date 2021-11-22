@@ -6,6 +6,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 public class TCCEntity extends BaseEntity {
+
+    @JSONField(name = "method")
+    private String method;
+
+    @JSONField(name = "rest")
+    private Integer rest;
+
     @JSONField(name = "url")
     private String url;
 
@@ -15,14 +22,17 @@ public class TCCEntity extends BaseEntity {
     @JSONField(name = "body_data")
     private String bodyData;
 
-    @JSONField(name = "executor")
-    private String executor;
+    @JSONField(name = "header")
+    private String header;
 
-    @JSONField(name = "next_opt")
-    private String nextOpt;
+    @JSONField(name = "executor")
+    private Integer executor;
 
     @JSONField(name = "branch_status")
     private int branchStatus;
+
+    @JSONField(name = "tried_times")
+    private int triedTimes;
 
     @JSONField(name = "finish_at", format = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -31,6 +41,22 @@ public class TCCEntity extends BaseEntity {
     @JSONField(name = "rollback_at", format = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date rollbackAt;
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
+    }
+
+    public Integer getRest() {
+        return rest;
+    }
+
+    public void setRest(Integer rest) {
+        this.rest = rest;
+    }
 
     public String getUrl() {
         return url;
@@ -56,20 +82,20 @@ public class TCCEntity extends BaseEntity {
         this.bodyData = bodyData;
     }
 
-    public String getExecutor() {
+    public String getHeader() {
+        return header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
+    }
+
+    public Integer getExecutor() {
         return executor;
     }
 
-    public void setExecutor(String executor) {
+    public void setExecutor(Integer executor) {
         this.executor = executor;
-    }
-
-    public String getNextOpt() {
-        return nextOpt;
-    }
-
-    public void setNextOpt(String nextOpt) {
-        this.nextOpt = nextOpt;
     }
 
     public int getBranchStatus() {
@@ -78,6 +104,14 @@ public class TCCEntity extends BaseEntity {
 
     public void setBranchStatus(int branchStatus) {
         this.branchStatus = branchStatus;
+    }
+
+    public int getTriedTimes() {
+        return triedTimes;
+    }
+
+    public void setTriedTimes(int triedTimes) {
+        this.triedTimes = triedTimes;
     }
 
     public Date getFinishAt() {
